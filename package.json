@@ -1,0 +1,21 @@
+{
+  "name": "@otvet/ZaitsevDmitry",
+  "version": "1.0.0",
+  "description": "Семестровый проект",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geekbrains-Frontend-Level-2/ZaitsevDmitry.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geekbrains-Frontend-Level-2/ZaitsevDmitry/issues"
+  },
+  "homepage": "https://github.com/Geekbrains-Frontend-Level-2/ZaitsevDmitry#readme"
+}
