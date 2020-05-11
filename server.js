@@ -2,13 +2,16 @@ const http = require('http')
 const fs = require('fs')
 
 const server = http.createServer((req, res) => {
+  let body = null
   const publicPath = './public'
 
-  console.log(req.url)
+  try {
+    console.log(`${publicPath}${req.url}`)
+    body = fs.readFileSync(`${publicPath}${req.url}`)
+  } catch (e) {
+    body = fs.readFileSync(`${publicPath}/index.html`)
+  }
 
-  const body = req.url === `/css/styles.css`
-    ? fs.readFileSync(`${publicPath}/css/styles.css`, 'utf8')
-    : fs.readFileSync(`${publicPath}/index.html`, 'utf8')
   res.end(body)
 })
 
