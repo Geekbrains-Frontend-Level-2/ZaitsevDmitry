@@ -64,19 +64,32 @@ class ItemList extends Renderer {
   constructor (root) {
     super(root)
     this.fetchData()
+      .then(this.render.bind(this))
   }
 
   fetchData () {
-    const items = [
-      { title: 'Shirt', price: 150 },
-      { title: 'Socks', price: 50 },
-      { title: 'Jacket', price: 350 },
-      { title: 'Shoes', price: 250 },
-    ]
+    return fetch('http://localhost:3000/database/items.json')
+      .then(res => {
+        console.log(res)
+        return res.json()
+      })
+      .then((res) => {
+        this._items = res.data.map(item => {
+            return new Item(item)
+          })
+      })
 
-    this._items = items.map(item => {
-      return new Item(item)
-    })
+
+    // const items = [
+    //   { title: 'Shirt', price: 150 },
+    //   { title: 'Socks', price: 50 },
+    //   { title: 'Jacket', price: 350 },
+    //   { title: 'Shoes', price: 250 },
+    // ]
+
+    // this._items = items.map(item => {
+    //   return new Item(item)
+    // })
   }
 
   get items () {
@@ -94,4 +107,3 @@ class ItemList extends Renderer {
 }
 
 const List = new ItemList(document.querySelector('main'))
-List.render()
