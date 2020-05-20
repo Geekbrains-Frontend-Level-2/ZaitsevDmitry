@@ -10,6 +10,7 @@
   border: 1px solid #fff;
   cursor: pointer;
   user-select: none;
+  outline: none;
 }
 
 .btn_primary {
@@ -82,4 +83,28 @@ h1 {
 
 .item__meta span {
   font-weight: normal;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart__list {
+  position: absolute;
+  background: #fff;
+  width: 300px;
+  right: 0;
+  top: 30px;
+  border-radius: 4px;
+  display: none;
+}
+
+
+.cart__list.shown {
+  display: block;
+}
+
+.cart__item {
+  padding: 20px;
+  border-bottom: 1px solid #999;
 }
