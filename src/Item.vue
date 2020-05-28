@@ -1,14 +1,16 @@
 <template>
-  <div :class="[$style.item]">
+  <div :class="[$style.item]" @click="updateAmount(id)">
     <div :class="[$style.item__img]">
       <div>NO IMAGE AVAILABLE</div>
     </div>
     <div :class="[$style.item__meta]">Товар: <span>{{ title }}</span></div>
     <div :class="[$style.item__meta]">Цена: <span>{{ price }}</span></div>
+    <div :class="[$style.item__meta]">Количество: <span>{{ amount }}</span></div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -17,8 +19,29 @@ export default {
     }
   },
   props: {
-    title: String,
-    price: Number,
+    id: Number,
+  },
+  methods: {
+    ...mapActions('goods', [
+      'updateAmount'
+    ])
+  },
+  computed: {
+    ...mapGetters('goods', [
+      'getData'
+    ]),
+    data () {
+      return this.getData[this.id]
+    },
+    title () {
+      return this.data.title
+    },
+    price () {
+      return this.data.price
+    },
+    amount () {
+      return this.data.amount || 0
+    }
   }
 }
 </script>

@@ -7,41 +7,39 @@
       </div>
     </header>
     <main>
-      <h1>Список товаров</h1>
+      <h1>Список товаров</h1><br>
       <Item
-        v-for="(item, index) in items"
-        :key="index"
-        :title="item.title" :price="item.price"
+        v-for="id in getItemsOnPage"
+        :key="id"
+        :id="id"
       />
     </main>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 import Item from './Item.vue'
 export default {
   data () {
-    return {
-      items: [
-        { "id": 1, "title": "Shirt", "price": 150 },
-        { "id": 2, "title": "Socks", "price": 50 },
-        { "id": 3, "title": "Jacket", "price": 350 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-        { "id": 4, "title": "Shoes", "price": 250 },
-      ]
-    }
+    return {}
   },
   components: {
     Item,
+  },
+  methods: {
+    ...mapActions('goods', [
+      'requestData'
+    ])
+  },
+  computed: {
+    ...mapGetters('goods', [
+      'getItemsOnPage'
+    ])
+  },
+  mounted () {
+    this.requestData()
   }
 }
 </script>
